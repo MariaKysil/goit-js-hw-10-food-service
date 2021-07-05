@@ -15,8 +15,6 @@ const Theme = {
   DARK: 'dark-theme',
 };
 
-refs.bodyRef.classList.add(Theme.LIGHT);
-
 updateTheme();
 
 refs.checkboxThemeRef.addEventListener('change', onCheckboxClick);
@@ -30,10 +28,7 @@ function onCheckboxClick() {
 }
 
 function updateTheme() {
-  const savedTheme = localStorage.getItem('Theme');
-
-  if (savedTheme === Theme.DARK) {
-    refs.checkboxThemeRef.checked = 'true';
-    onCheckboxClick();
-  }
+  const savedTheme = localStorage.getItem('Theme') || Theme.LIGHT;
+  refs.bodyRef.classList.add(savedTheme);
+  refs.checkboxThemeRef.checked = savedTheme === Theme.DARK;
 }
